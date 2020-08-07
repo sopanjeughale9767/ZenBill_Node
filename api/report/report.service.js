@@ -1,6 +1,6 @@
 const pool = require("../../config/database");
 
-module.exports = {
+module.exports = { 
 
     invRepBetDate: (data, callback) => {
         pool.query("SELECT * FROM tbl_invoice WHERE invoiceDate BETWEEN '" + data.sDate + "' AND '" + data.eDate + "';",
