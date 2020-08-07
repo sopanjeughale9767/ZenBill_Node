@@ -12,7 +12,7 @@ module.exports = {
             }
         );
     },
-
+ 
     invRepByDate: (data, callback) => {
         pool.query("SELECT * FROM tbl_invoice WHERE invoiceDate = ?", [data.date],
             (error, result) => {
