@@ -1,8 +1,7 @@
-const { getItemByComp, getItemByIdComp, addItemMaster, deleteItemMaster, updateItemMaster, itemMasterSearch} = require("./itemMaster.service");
+const { getItemByComp, getItemByIdComp, addItemMaster, deleteItemMaster, updateItemMaster, itemMasterSearch, getLast} = require("./itemMaster.service");
   
 
 module.exports = {
-
 
     getItemComp: (req, res) => {
         const data = req.body;
@@ -39,14 +38,26 @@ module.exports = {
             });
         });
     },
- 
 
-
+    getL: (req, res) => {
+        getLast((err, result) => {
+            if (err) {
+                console.log(err);
+                return res.status(500).json({
+                    success: 0,
+                    message: "Database connection error"
+                });
+            }
+            return res.status(200).json({
+                success: 1,
+                data: result,
+                status: true
+            });
+        });
+    },
      
     search: (req, res) => {
-
         const data = req.body;
-  
         itemMasterSearch(data, (err, result) => {
             if (err) {
                 console.log(err);
@@ -62,6 +73,7 @@ module.exports = {
             });
         });
     },
+
     AddImaster: (req, res) => {
         var data = req.body;
         data.cgst = data.gst / 2;
@@ -84,8 +96,6 @@ module.exports = {
         });
     },
 
-
-
     update: (req, res) => {
         const body = req.body;
         updateItemMaster(body, (err, result) => {
@@ -101,10 +111,7 @@ module.exports = {
         });
     },
 
-
-
     deleteItem: (req, res) => {
-         
         const data = req.body;
         deleteItemMaster(data, (err, result) => {
             if (err) {
@@ -117,6 +124,6 @@ module.exports = {
                 status: true
             });
         });
-    },
+    }
 
-}
+}   

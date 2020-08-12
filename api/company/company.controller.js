@@ -11,12 +11,12 @@ module.exports = {
                 return;
             }
             return req.json({
-                success: 1,
+                success: 1, 
                 status: true,
                 data: result
             })
         })
-    },
+    }, 
 
     register: (req, res) => {
         const data = req.body;
@@ -33,7 +33,8 @@ module.exports = {
             return res.json({
                 success: 1,
                 status: true,
-                data: result
+                data: result,
+                data: "registration succeffully."
             });
         });
     },
